@@ -34,6 +34,8 @@ from wagtail.models import (
 )
 from wagtail.search import index
 
+from grapple.models import GraphQLString, GraphQLStreamfield, GraphQLImage, GraphQLPage
+
 from .blocks import BaseStreamBlock
 
 
@@ -110,6 +112,12 @@ class Person(
         index.FilterField("job_title"),
         index.AutocompleteField("first_name"),
         index.AutocompleteField("last_name"),
+    ]
+    graphql_fields = [
+        GraphQLString("first_name"),
+        GraphQLString("last_name"),
+        GraphQLString("job_title"),
+        GraphQLImage("image"),
     ]
 
     @property
@@ -233,6 +241,11 @@ class StandardPage(Page):
         FieldPanel("introduction"),
         FieldPanel("body"),
         FieldPanel("image"),
+    ]
+    graphql_fields = [
+        GraphQLString("introduction"),
+        GraphQLImage("image"),
+        GraphQLStreamfield("body"),
     ]
 
 
@@ -392,6 +405,22 @@ class HomePage(Page):
             heading="Featured homepage sections",
         ),
     ]
+    graphql_fields = [
+        GraphQLImage("image"),
+        GraphQLStreamfield("body"),
+        GraphQLString("hero_text"),
+        GraphQLString("hero_cta"),
+        GraphQLPage("hero_cta_link"),
+        GraphQLImage("promo_image"),
+        GraphQLString("promo_title"),
+        GraphQLString("promo_text"),
+        GraphQLString("featured_section_1_title"),
+        GraphQLPage("featured_section_1"),
+        GraphQLString("featured_section_2_title"),
+        GraphQLPage("featured_section_2"),
+        GraphQLString("featured_section_3_title"),
+        GraphQLPage("featured_section_3"),
+    ]
 
     def __str__(self):
         return self.title
@@ -431,6 +460,12 @@ class GalleryPage(Page):
         FieldPanel("body"),
         FieldPanel("image"),
         FieldPanel("collection"),
+    ]
+
+    graphql_fields = [
+        GraphQLString("introduction"),
+        GraphQLImage("image"),
+        GraphQLStreamfield("body"),
     ]
 
     # Defining what content type can sit under the parent. Since it's a blank
@@ -573,3 +608,9 @@ class UserApprovalTask(Task):
     @classmethod
     def get_description(cls):
         return _("Only a specific user can approve this task")
+
+    graphql_fields = [
+        GraphQLString("thank_you_text"),
+        GraphQLImage("image"),
+        GraphQLStreamfield("body"),
+    ]

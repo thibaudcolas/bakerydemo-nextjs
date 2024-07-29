@@ -1,0 +1,2816 @@
+type StandardPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  introduction: String
+  image: ImageObjectType
+  body: [StreamFieldInterface]
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+interface PageInterface {
+  id: ID
+  title: String!
+  slug: String!
+  contentType: String!
+  pageType: String
+  live: Boolean!
+  url: String
+  urlPath: String!
+  depth: Int
+  seoTitle: String!
+  searchDescription: String
+  showInMenus: Boolean!
+  locked: Boolean
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+"""
+The `DateTime` scalar type represents a DateTime
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar DateTime
+
+"""GraphQL type for an integer that must be equal or greater than zero."""
+scalar PositiveInt
+
+"""
+Leverages the internal Python implementation of UUID (uuid.UUID) to provide native UUID objects
+in fields, resolvers and input.
+"""
+scalar UUID
+
+type SiteObjectType {
+  id: ID!
+  hostname: String!
+
+  """
+  Set this to something other than 80 if you need a specific port number to appear in URLs (e.g. development on port 8000). Does not affect request handling (so port forwarding still works).
+  """
+  port: Int!
+
+  """Human-readable name for the site."""
+  siteName: String!
+  rootPage: Page!
+
+  """
+  If true, this site will handle requests for all other hostnames that do not have a site entry of their own
+  """
+  isDefaultSite: Boolean!
+  sitesettings: SiteSettings
+  pages(
+    """Filter by content type. Uses the `app.Model` notation."""
+    contentType: String
+
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  page(id: ID, slug: String, urlPath: String, token: String, contentType: String): PageInterface
+}
+
+type ImageObjectType {
+  id: ID!
+  collection: CollectionObjectType!
+  title: String!
+  file: String!
+  width: Int!
+  height: Int!
+  createdAt: DateTime!
+  focalPointX: Int
+  focalPointY: Int
+  focalPointWidth: Int
+  focalPointHeight: Int
+  fileSize: Int
+  fileHash: String!
+  renditions: [ImageRenditionObjectType!]!
+  src: String! @deprecated(reason: "Use the `url` attribute")
+  url: String!
+  aspectRatio: Float!
+  sizes: String!
+  tags: [TagObjectType!]!
+  rendition(
+    max: String
+    min: String
+    width: Int
+    height: Int
+    fill: String
+    format: String
+    bgcolor: String
+    jpegquality: Int
+    webpquality: Int
+
+    """
+    Prevents raster image operations (e.g. `format-webp`, `bgcolor`, etc.) being applied to SVGs. More info: https://docs.wagtail.org/en/stable/topics/images.html#svg-images
+    """
+    preserveSvg: Boolean
+  ): ImageRenditionObjectType
+  srcSet(
+    sizes: [Int]
+    format: String
+
+    """
+    Prevents raster image operations (e.g. `format-webp`, `bgcolor`, etc.) being applied to SVGs. More info: https://docs.wagtail.org/en/stable/topics/images.html#svg-images
+    """
+    preserveSvg: Boolean
+  ): String
+  isSvg: Boolean!
+}
+
+"""Collection type"""
+type CollectionObjectType {
+  id: ID!
+  path: String!
+  depth: Int!
+  numchild: Int!
+  name: String!
+
+  """Select the image collection for this gallery."""
+  gallerypageSet: [GalleryPage!]!
+  descendants: [CollectionObjectType]!
+  ancestors: [CollectionObjectType]!
+}
+
+type ImageRenditionObjectType {
+  id: ID!
+  filterSpec: String!
+  file: String!
+  width: Int!
+  height: Int!
+  focalPointKey: String!
+  image: ImageObjectType!
+  focalPoint: String
+  url: String!
+  alt: String!
+  backgroundPositionStyle: String!
+}
+
+type TagObjectType {
+  id: ID!
+  name: String!
+}
+
+interface StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+}
+
+type HomePage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  image: ImageObjectType
+  heroText: String
+  heroCta: String
+  heroCtaLink: PageInterface
+  body: [StreamFieldInterface]
+  promoImage: ImageObjectType
+  promoTitle: String
+  promoText: String
+  featuredSection1Title: String
+  featuredSection1: PageInterface
+  featuredSection2Title: String
+  featuredSection2: PageInterface
+  featuredSection3Title: String
+  featuredSection3: PageInterface
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+type GalleryPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  introduction: String
+  image: ImageObjectType
+  body: [StreamFieldInterface]
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+type FormPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+type BlogPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  introduction: String
+  image: ImageObjectType
+  body: [StreamFieldInterface]
+  subtitle: String
+  datePublished: String
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+  tags: [TagObjectType]
+}
+
+type BlogIndexPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  introduction: String
+  image: ImageObjectType
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+type BreadPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  introduction: String
+  image: ImageObjectType
+  body: [StreamFieldInterface]
+  origin: Country
+  breadType: BreadType
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+type BreadsIndexPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+type LocationsIndexPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+type LocationPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  introduction: String
+  image: ImageObjectType
+  body: [StreamFieldInterface]
+  address: String
+  latLong: String
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+type PopUpHomePage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  image: ImageObjectType
+  heroText: String
+  heroCta: String
+  heroCtaLink: PageInterface
+  body: [StreamFieldInterface]
+  promoImage: ImageObjectType
+  promoTitle: String
+  promoText: String
+  featuredSection1Title: String
+  featuredSection1: PageInterface
+  featuredSection2Title: String
+  featuredSection2: PageInterface
+  featuredSection3Title: String
+  featuredSection3: PageInterface
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+type PopUpBlogPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  introduction: String
+  image: ImageObjectType
+  body: [StreamFieldInterface]
+  subtitle: String
+  datePublished: String
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+  tags: [TagObjectType]
+  authors: [Person]
+}
+
+type PopUpBlogIndexPage implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  introduction: String
+  image: ImageObjectType
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+"""
+Base Page type used if one isn't generated for the current model.
+All other node types extend this.
+"""
+type Page implements PageInterface {
+  id: ID
+  path: String!
+  depth: Int
+  numchild: Int!
+  translationKey: UUID!
+  live: Boolean!
+  hasUnpublishedChanges: Boolean!
+  firstPublishedAt: DateTime
+  lastPublishedAt: DateTime
+  goLiveAt: DateTime
+  expireAt: DateTime
+  expired: Boolean!
+  locked: Boolean
+  lockedAt: DateTime
+  title: String!
+  draftTitle: String!
+  slug: String!
+  contentType: String!
+  urlPath: String!
+  seoTitle: String!
+  showInMenus: Boolean!
+  searchDescription: String
+  latestRevisionCreatedAt: DateTime
+  aliasOf: Page
+  sitesRootedHere: [SiteObjectType!]!
+  aliases: [Page!]!
+  standardpage: StandardPage
+  homepage: HomePage
+  gallerypage: GalleryPage
+  formpage: FormPage
+  blogpage: BlogPage
+  blogindexpage: BlogIndexPage
+  breadpage: BreadPage
+  breadsindexpage: BreadsIndexPage
+  locationsindexpage: LocationsIndexPage
+  locationpage: LocationPage
+  popuphomepage: PopUpHomePage
+  popupblogpage: PopUpBlogPage
+  popupblogindexpage: PopUpBlogIndexPage
+  pageType: String
+  url: String
+  parent: PageInterface
+  children(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  siblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  nextSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  previousSiblings(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  descendants(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  ancestors(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  searchScore: Float
+}
+
+type Person {
+  id: ID
+  firstName: String
+  lastName: String
+  jobTitle: String
+  image: ImageObjectType
+}
+
+type FooterText {
+  id: ID
+}
+
+type BreadIngredient {
+  id: ID
+}
+
+type BreadType {
+  id: ID
+  title: String
+}
+
+type StreamFieldBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+}
+
+type CharBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+}
+
+type TextBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+}
+
+type EmailBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+}
+
+type IntegerBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: Int!
+}
+
+type FloatBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: Float!
+}
+
+type DecimalBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: Float!
+}
+
+type RegexBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+}
+
+type URLBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+}
+
+type BooleanBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: Boolean!
+}
+
+type DateBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value(format: String): String!
+}
+
+type TimeBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value(format: String): String!
+}
+
+type DateTimeBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value(format: String): String!
+}
+
+type RichTextBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+}
+
+type RawHTMLBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+}
+
+type BlockQuoteBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+}
+
+type ChoiceBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+  choices: [ChoiceOption!]!
+}
+
+type ChoiceOption {
+  key: String!
+  value: String!
+}
+
+type StreamBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  blocks: [StreamFieldInterface!]!
+}
+
+type StructBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  blocks: [StreamFieldInterface!]!
+}
+
+type StaticBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+}
+
+type ListBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  items: [StreamFieldInterface!]!
+}
+
+type EmbedBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  value: String!
+  url: String!
+  embed: String
+  rawEmbed: JSONString
+}
+
+"""
+Allows use of a JSON String for input / output from the GraphQL schema.
+
+Use of this type is *not recommended* as you lose the benefits of having a defined, static
+schema (one of the key benefits of GraphQL).
+"""
+scalar JSONString
+
+type ImageBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  blocks: [StreamFieldInterface!]!
+  image: ImageObjectType
+  caption: String
+  attribution: String
+}
+
+type HeadingBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  blocks: [StreamFieldInterface!]!
+  headingText: String
+  size: String
+}
+
+type BlockQuote implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  blocks: [StreamFieldInterface!]!
+  text: String
+  attributeName: String
+}
+
+type BaseStreamBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  blocks: [StreamFieldInterface!]!
+}
+
+type PageChooserBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  page: PageInterface
+}
+
+type DocumentChooserBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  document: DocumentObjectType
+}
+
+"""
+Base document type used if one isn't generated for the current model.
+All other node types extend this.
+"""
+type DocumentObjectType {
+  id: ID!
+  collection: CollectionObjectType!
+  title: String!
+  file: String!
+  createdAt: DateTime!
+  fileSize: Int
+  fileHash: String!
+  url: String!
+  tags: [TagObjectType!]!
+}
+
+type ImageChooserBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  image: ImageObjectType
+}
+
+type SnippetChooserBlock implements StreamFieldInterface {
+  id: String
+  blockType: String!
+  field: String!
+  rawValue: String!
+  snippet: SnippetObjectType
+}
+
+union SnippetObjectType = Person | FooterText | BreadIngredient | BreadType
+
+type FormField {
+  id: ID
+}
+
+type UserApprovalTaskState {
+  id: ID
+}
+
+type UserApprovalTask {
+  id: ID
+  thankYouText: String
+  image: ImageObjectType
+  body: [StreamFieldInterface]
+}
+
+type BlogPersonRelationship {
+  id: ID
+}
+
+type BlogPageTag {
+  id: ID
+}
+
+type Country {
+  id: ID
+  title: String
+}
+
+type LocationOperatingHours {
+  id: ID
+}
+
+type PopUpBlogPersonRelationship {
+  id: ID
+  person: Person
+}
+
+type PopUpBlogPageTag {
+  id: ID
+}
+
+type GenericSettings {
+  id: ID
+}
+
+type SiteSettings {
+  id: ID
+}
+
+type Query {
+  redirects: [Redirect!]!
+  collections(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter by ID"""
+    id: ID
+  ): [CollectionObjectType]!
+  tag(id: ID): TagObjectType
+  tags(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter by ID"""
+    id: ID
+  ): [TagObjectType!]!
+  search(query: String): [Search!]!
+  setting(name: String, site: String): SettingsObjectType
+  settings(name: String, site: String): [SettingsObjectType!]!
+  snippets: [SnippetObjectType!]!
+  document(id: ID): DocumentObjectType
+  documents(
+    """Filter by collection id"""
+    collection: ID
+
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [DocumentObjectType!]!
+  documentType: String!
+  image(id: ID): ImageObjectType
+  images(
+    """Filter by collection id"""
+    collection: ID
+
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [ImageObjectType!]!
+  imageType: String!
+  site(hostname: String, id: ID): SiteObjectType
+  sites(
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [SiteObjectType!]!
+  pages(
+    """
+    Filter by content type. Uses the `app.Model` notation. Accepts a comma separated list of content types.
+    """
+    contentType: String
+
+    """Filter to pages in the current site only."""
+    inSite: Boolean = false
+
+    """Filter to pages in the give site."""
+    site: String
+
+    """Filter to pages that are descendants of the given page."""
+    ancestor: ID
+
+    """
+    Filter to pages that are children of the given page. When using both `parent` and `ancestor`, then `parent` will take precendence.
+    """
+    parent: ID
+
+    """Limit a number of resulting objects."""
+    limit: PositiveInt
+
+    """Number of records skipped from the beginning of the results set."""
+    offset: PositiveInt
+
+    """Use the Django queryset order format."""
+    order: String
+
+    """Filter the results using Wagtail's search."""
+    searchQuery: String
+
+    """Filter by ID"""
+    id: ID
+  ): [PageInterface!]!
+  page(
+    id: ID
+    slug: String
+
+    """
+    Filter by url path. Note: in a multi-site setup, returns the first available page based. Use `inSite: true` from the relevant site domain.
+    """
+    urlPath: String
+
+    """
+    Filter by preview token as passed by the `wagtail-headless-preview` package.
+    """
+    token: String
+
+    """
+    Filter by content type using the app.ModelName notation. e.g. `myapp.BlogPage`
+    """
+    contentType: String
+
+    """Filter to pages in the current site only."""
+    inSite: Boolean = false
+
+    """Filter to pages in the give site."""
+    site: String
+  ): PageInterface
+}
+
+type Redirect {
+  oldPath: String!
+  oldUrl: String!
+  newUrl: String
+  page: PageInterface
+  site: SiteObjectType!
+  isPermanent: Boolean!
+}
+
+union Search = StandardPage | HomePage | GalleryPage | FormPage | BlogPage | BlogIndexPage | BreadPage | BreadsIndexPage | LocationsIndexPage | LocationPage | PopUpHomePage | PopUpBlogPage | PopUpBlogIndexPage | Page | Person | FooterText | BreadIngredient | BreadType | FormField | UserApprovalTaskState | UserApprovalTask | BlogPersonRelationship | BlogPageTag | Country | LocationOperatingHours | PopUpBlogPersonRelationship | PopUpBlogPageTag | GenericSettings | SiteSettings
+
+union SettingsObjectType = GenericSettings | SiteSettings

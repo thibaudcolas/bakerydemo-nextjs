@@ -6,4 +6,5 @@ django-debug-toolbar>=4.2,<5
 django-extensions==3.2.3
 django-csp==3.7
 dj-database-url==2.1.0
-wagtail-grapple@git+https://github.com/torchbox/wagtail-grapple.git@main#egg=wagtail-grapple
+wagtail-grapple==0.26.0
+wagtail-headless-preview==0.8.0

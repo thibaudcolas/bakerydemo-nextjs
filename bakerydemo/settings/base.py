@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "wagtailfontawesomesvg",
+    "wagtail_headless_preview",
     # Uncomment to enable django-debug-toolbar
     # "debug_toolbar",
     "django_extensions",
@@ -248,4 +249,11 @@ GRAPPLE = {
         "locations",
     ],
     "EXPOSE_GRAPHIQL": True,
+}
+
+WAGTAIL_HEADLESS_PREVIEW = {
+    "CLIENT_URLS": {
+        "default": "{SITE_ROOT_URL}/api/draft",
+    },
+    "LIVE_PREVIEW": True,  # set to True to enable live preview functionality
 }

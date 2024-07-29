@@ -2,6 +2,12 @@ from django import forms
 from django.contrib.contenttypes.fields import GenericRelation
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
+from grapple.models import (
+    GraphQLForeignKey,
+    GraphQLImage,
+    GraphQLStreamfield,
+    GraphQLString,
+)
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import StreamField
@@ -26,6 +32,10 @@ class Country(models.Model):
 
     def __str__(self):
         return self.title
+
+    graphql_fields = [
+        GraphQLString("title"),
+    ]
 
     class Meta:
         verbose_name = "country of origin"
@@ -89,6 +99,10 @@ class BreadType(RevisionMixin, models.Model):
         FieldPanel("title"),
     ]
 
+    graphql_fields = [
+        GraphQLString("title"),
+    ]
+
     def __str__(self):
         return self.title
 
@@ -150,6 +164,20 @@ class BreadPage(Page):
             ],
             heading="Additional Metadata",
             classname="collapsed",
+        ),
+    ]
+
+    graphql_fields = [
+        GraphQLString("introduction"),
+        GraphQLImage("image"),
+        GraphQLStreamfield("body"),
+        GraphQLForeignKey(
+            "origin",
+            "breads.Country",
+        ),
+        GraphQLForeignKey(
+            "bread_type",
+            "breads.BreadType",
         ),
     ]
 

@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from modelcluster.fields import ParentalKey
+from grapple.models import GraphQLImage, GraphQLStreamfield, GraphQLString
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.fields import StreamField
 from wagtail.models import Orderable, Page
@@ -137,6 +138,14 @@ class LocationPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField("address"),
         index.SearchField("body"),
+    ]
+
+    graphql_fields = [
+        GraphQLString("introduction"),
+        GraphQLImage("image"),
+        GraphQLStreamfield("body"),
+        GraphQLString("address"),
+        GraphQLString("lat_long"),
     ]
 
     # Fields to show to the editor in the admin view

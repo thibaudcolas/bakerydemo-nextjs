@@ -8,8 +8,11 @@ from wagtail.blocks import (
 )
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
+from grapple.helpers import register_streamfield_block
+from grapple.models import GraphQLImage, GraphQLString
 
 
+@register_streamfield_block
 class ImageBlock(StructBlock):
     """
     Custom `StructBlock` for utilizing images with associated caption and
@@ -20,11 +23,18 @@ class ImageBlock(StructBlock):
     caption = CharBlock(required=False)
     attribution = CharBlock(required=False)
 
+    graphql_fields = [
+        GraphQLImage("image"),
+        GraphQLString("caption"),
+        GraphQLString("attribution"),
+    ]
+
     class Meta:
         icon = "image"
         template = "blocks/image_block.html"
 
 
+@register_streamfield_block
 class HeadingBlock(StructBlock):
     """
     Custom `StructBlock` that allows the user to select h2 - h4 sizes for headers
@@ -42,11 +52,17 @@ class HeadingBlock(StructBlock):
         required=False,
     )
 
+    graphql_fields = [
+        GraphQLString("heading_text"),
+        GraphQLString("size"),
+    ]
+
     class Meta:
         icon = "title"
         template = "blocks/heading_block.html"
 
 
+@register_streamfield_block
 class BlockQuote(StructBlock):
     """
     Custom `StructBlock` that allows the user to attribute a quote to the author
@@ -55,12 +71,17 @@ class BlockQuote(StructBlock):
     text = TextBlock()
     attribute_name = CharBlock(blank=True, required=False, label="e.g. Mary Berry")
 
+    graphql_fields = [
+        GraphQLString("text"),
+        GraphQLString("attribute_name"),
+    ]
+
     class Meta:
         icon = "openquote"
         template = "blocks/blockquote.html"
 
 
-# StreamBlocks
+@register_streamfield_block
 class BaseStreamBlock(StreamBlock):
     """
     Define the custom blocks that `StreamField` will utilize

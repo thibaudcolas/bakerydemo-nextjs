@@ -10,3 +10,5 @@ frontend/public
 # Files which contain incompatible syntax.
 *.html
 bakerydemo/collect_static
+.next
+public

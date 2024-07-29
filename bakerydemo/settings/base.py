@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "bakerydemo.blog",
     "bakerydemo.breads",
     "bakerydemo.locations",
+    "bakerydemo.pop_up_bakery",
     "bakerydemo.recipes",
     "bakerydemo.search",
     "wagtail.embeds",
@@ -247,6 +248,7 @@ GRAPPLE = {
         "blog",
         "breads",
         "locations",
+        "pop_up_bakery",
     ],
     "EXPOSE_GRAPHIQL": True,
 }

@@ -59,22 +59,6 @@ export default function BlogPage({ page }: BlogPageProps) {
             </div>
 
             <BaseStreamBlock blocks={page.body} />
-
-            {page.tags && (
-              <>
-                <p className="blog__tag-introduction">
-                  Find more blog posts with similar tags
-                </p>
-                <div className="blog-tags blog-tags--condensed">
-                  <span className="u-sr-only">Filter blog posts by tag</span>
-                  {page.tags.map((tag, index) => (
-                    <a key={index} href={tag.url} className="blog-tags__pill">
-                      {tag.name}
-                    </a>
-                  ))}
-                </div>
-              </>
-            )}
           </div>
         </div>
       </div>

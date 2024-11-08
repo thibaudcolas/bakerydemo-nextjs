@@ -6,6 +6,7 @@ import LocationCard, { LocationCardPage } from '@/components/LocationCard';
 
 export interface HomePageType {
   title: string;
+  body: string;
   heroText: string;
   heroCtaLink: {
     url: string;
